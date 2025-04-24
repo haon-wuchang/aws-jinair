@@ -1,4 +1,4 @@
-drop database jinairdb;
+-- drop database jinairdb;
 CREATE DATABASE  IF NOT EXISTS `jinairdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `jinairdb`;
 -- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
@@ -86,7 +86,7 @@ CREATE TABLE `customer` (
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
 INSERT INTO `customer` VALUES 
-('test1','1111','홍','길동','HONG','GILLDONG','01012345678','gilldong@gmail.com','F','2099.01.01','2025-03-26 18:14:27',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL),
+('test1','1111','홍','길동','HONG','GILLDONG','01012345678','kimdahee42@gmail.com','F','2099.01.01','2025-03-26 18:14:27',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL),
 ('test2','2222','김','다희','BANA','PRESSO','01012345678','rabbit0523@naver.com','M','2000.05.23','2025-03-26 18:14:27',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL),
 ('test3','3333','이','하온','BANA','PRESSO','01012345678','haoony@naver.com ','M','2000.05.23','2025-03-26 18:14:27',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL),
 ('test4','4444','황','수현','BANA','PRESSO','01012345678','hwangsu94@naver.com','M','2000.05.23','2025-03-26 18:14:27',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL),
@@ -133,8 +133,9 @@ INSERT INTO `flight` VALUES ('LJ100','B737-900','마카오','MFM','대구','TAE'
 /*!40000 ALTER TABLE `flight` ENABLE KEYS */;
 UNLOCK TABLES;
 
-
-
+--
+-- Table structure for table `country`
+--
 
 DROP TABLE IF EXISTS `country`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -152,9 +153,9 @@ CREATE TABLE `country` (
 
 LOCK TABLES `country` WRITE;
 /*!40000 ALTER TABLE `country` DISABLE KEYS */;
+INSERT INTO `country` VALUES ('괌','괌 (GUM)'),('한국','광주 (KWJ)'),('한국','군산 (KUV)'),('동북아','기타큐슈 (KKJ)'),('동북아','나고야 (NGO)'),('동남아','나트랑 (CXR)'),('동남아','다낭 (DAD)'),('동북아','다카마쓰 (TAK)'),('한국','대구 (TAE)'),('동북아','도쿄/나리타 (NRT)'),('동북아','마카오 (MFM)'),('한국','무안 (MWX)'),('동북아','미야코지마/시모지시마 (SHI)'),('동남아','방콕 (BKK)'),('동남아','보홀 (TAG)'),('한국','부산 (PUS)'),('동남아','비엔티안 (VTE)'),('한국','사천 (HIN)'),('동북아','삿포로 (CTS)'),('동북아','상하이/푸둥 (PVG)'),('한국','서울/김포 (GMP)'),('한국','서울/인천 (ICN)'),('동남아','세부 (CEB)'),('동북아','시안 (XIY)'),('한국','여수 (RSU)'),('동북아','오사카/간사이 (KIX)'),('동북아','오키나와 (OKA)'),('몽골','울란바토르 (UBN)'),('한국','울산 (USN)'),('한국','원주 (WJU)'),('동북아','이시가키지마 (ISG)'),('동북아','정저우 (CGO)'),('한국','제주 (CJU)'),('한국','청주 (CJJ)'),('동남아','치앙마이 (CNX)'),('동남아','코타 키나발루 (BKI)'),('동남아','클락 (CRK)'),('동북아','타이베이/타오위안 (TPE)'),('동북아','타이중 (RMQ)'),('한국','포항/경주 (KPO)'),('동남아','푸껫 (HKT)'),('동남아','푸꾸옥 (PQC)'),('동북아','홍콩 (HKG)'),('동북아','후쿠오카 (FUK)');
 /*!40000 ALTER TABLE `country` ENABLE KEYS */;
 UNLOCK TABLES;
-
 
 
 --
@@ -318,7 +319,7 @@ CREATE TABLE `seats` (
   `reserved_premium` json DEFAULT NULL,
   PRIMARY KEY (`fNUM`),
   KEY `SUB_SEATS_FK_fnum` (`fNUM`),
-  CONSTRAINT `SUB_SEATS_FK_fnum` FOREIGN KEY (`fNUM`) REFERENCES `flight` (`fNUM`)
+  CONSTRAINT `SUB_SEATS_FK_fnum` FOREIGN KEY (`fNUM`) REFERENCES `flight` (`fNUM`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
